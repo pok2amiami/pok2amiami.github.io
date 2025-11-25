@@ -3,250 +3,293 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Spesial Kami</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>pok”amiami - Nggayem Oke Mangan Oke</title>
     <style>
-        /* --- RESET & VARIABEL --- */
-        :root {
-            --primary-color: #ff9f1c; /* Warna Oranye Jeruk */
-            --secondary-color: #2ec4b6; /* Warna Tosca */
-            --bg-dark: #1b1b1b;
-            --text-light: #ffffff;
-            --text-gray: #cccccc;
-            --wa-green: #25D366;
+        /* --- 0. FONT CUSTOM LOADING --- */
+        /* Anda harus memiliki file font 'EdgeDisplay-Bold.woff2' dan 'EdgeDisplay-Bold.woff' 
+           di folder yang sama dengan file HTML ini. */
+        @font-face {
+            font-family: 'Edge Display Bold';
+            src: url('EdgeDisplay-Bold.woff2') format('woff2'),
+                 url('EdgeDisplay-Bold.woff') format('woff');
+            font-weight: bold;
+            font-style: normal;
         }
 
+        /* --- 1. RESET & BASE STYLES --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Font default untuk teks lain tetap Poppins atau sans-serif */
+            font-family: 'Poppins', sans-serif; 
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            overflow-x: hidden; /* Mencegah scroll samping karena gambar miring */
-        }
-
-        /* --- NAVIGATION --- */
-        nav {
-            padding: 20px 50px;
+            background-color: #fff8f0; 
+            color: #333;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: absolute;
-            width: 100%;
-            z-index: 10;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            padding: 0 50px;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- 2. LAYOUT CONTAINER (Room Effect) --- */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            display: flex;
+            flex-wrap: wrap;
+            overflow: hidden;
             position: relative;
         }
 
-        .container {
+        /* --- 3. LEFT SIDE (IMAGE 30%) --- */
+        .image-section {
+            flex: 0 0 30%; 
+            background-color: #ffecd1;
+            position: relative;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            max-width: 1200px;
-            flex-wrap: wrap; /* Agar responsif di HP */
+            justify-content: center;
+            cursor: zoom-in; 
+            transition: background 0.3s;
+            overflow: hidden;
         }
 
-        /* --- TEXT CONTENT (Kiri) --- */
-        .content-text {
-            flex: 1;
-            min-width: 300px;
-            padding-right: 20px;
+        .image-section:hover {
+            background-color: #ffe0b2;
+        }
+        
+        .click-hint {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
             z-index: 2;
+            pointer-events: none;
         }
 
+        .product-img {
+            width: 80%;
+            height: auto;
+            object-fit: contain;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+        }
+
+        .image-section:hover .product-img {
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        /* --- 4. RIGHT SIDE (CONTENT) --- */
+        .content-section {
+            flex: 1; 
+            padding: 3rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* PERUBAHAN FONT DI SINI */
         h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
-            margin-bottom: 20px;
+            font-family: 'Edge Display Bold', sans-serif; /* Menggunakan font yang diminta */
+            font-size: 4rem;
+            line-height: 1;
+            color: #ff4500; 
+            margin-bottom: 1rem;
+            font-weight: bold;
+            letter-spacing: -2px;
         }
 
-        h1 span {
-            color: var(--primary-color);
+        .tagline {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-style: italic;
         }
 
-        p {
-            color: var(--text-gray);
+        .description {
             font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 3rem;
             line-height: 1.6;
-            margin-bottom: 30px;
             max-width: 500px;
         }
 
         /* --- BUTTONS --- */
-        .btn-group {
+        .button-group {
             display: flex;
             gap: 15px;
+            flex-wrap: wrap;
         }
 
         .btn {
-            padding: 12px 25px;
-            border-radius: 50px;
             text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
             font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             gap: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        /* Tombol Lokasi (Outline) */
-        .btn-loc {
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
-            background: transparent;
-        }
-
-        .btn-loc:hover {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        /* Tombol WhatsApp (Solid) */
-        .btn-wa {
-            background-color: var(--wa-green);
-            color: white;
-            border: 2px solid var(--wa-green);
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-        }
-
-        .btn-wa:hover {
-            background-color: #1ebc57;
+        .btn:hover {
             transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
 
-        /* --- IMAGE AREA (Kanan) --- */
-        .content-image {
-            flex: 1;
-            display: flex;
+        .btn-wa {
+            background-color: #25D366;
+            color: white;
+        }
+
+        .btn-loc {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+
+        /* --- 5. MODAL / LIGHTBOX (MENU A4) --- */
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.85);
+            backdrop-filter: blur(5px);
             justify-content: center;
             align-items: center;
-            position: relative;
-            min-width: 300px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        /* BACKGROUND BLOB (Hiasan di belakang gambar) */
-        .blob {
+        .modal.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            width: auto;
+            height: 90vh; 
+            aspect-ratio: 210/297; 
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            animation: popUp 0.4s ease;
+        }
+
+        @keyframes popUp {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close-btn {
             position: absolute;
-            width: 400px;
-            height: 400px;
-            background: linear-gradient(45deg, var(--primary-color), #ff5e62);
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.2;
-            z-index: 1;
-        }
-
-        /* GAMBAR MIRING 25 DERAJAT */
-        .menu-img {
-            width: 350px;
-            height: auto;
-            /* INI BAGIAN PENTINGNYA: ROTASI 25 DERAJAT */
-            transform: rotate(25deg); 
-            
-            border-radius: 30px;
-            box-shadow: 20px 20px 30px rgba(0,0,0,0.5);
-            z-index: 2;
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 5px solid rgba(255,255,255,0.1);
-        }
-
-        /* Efek Hover: Gambar menjadi lurus saat mouse diarahkan */
-        .menu-img:hover {
-            transform: rotate(0deg) scale(1.05);
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
             cursor: pointer;
+            transition: 0.3s;
         }
 
-        /* --- RESPONSIVE (Tampilan HP) --- */
+        .close-btn:hover {
+            color: #ff4500;
+        }
+
+        /* --- RESPONSIVE (Mobile) --- */
         @media (max-width: 768px) {
-            .hero {
-                padding: 100px 20px 50px;
+            .container {
+                flex-direction: column;
+                width: 95%;
+                margin: 20px 0;
+            }
+            .image-section {
+                width: 100%;
+                height: 300px;
+            }
+            .content-section {
+                padding: 2rem;
                 text-align: center;
             }
-            
-            .container {
-                flex-direction: column-reverse; /* Gambar di atas, teks di bawah */
-                gap: 50px;
-            }
-
-            .content-text {
-                padding-right: 0;
-            }
-
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            p {
-                margin: 0 auto 30px;
-            }
-
-            .btn-group {
+            .button-group {
                 justify-content: center;
             }
-
-            .menu-img {
-                width: 280px; /* Perkecil gambar di HP */
-                transform: rotate(15deg); /* Kurangi kemiringan di HP agar rapi */
+            h1 { font-size: 3rem; }
+            .tagline { font-size: 1.5rem; }
+            .description { margin-left: auto; margin-right: auto; }
+            .modal-content {
+                width: 90%;
+                height: auto;
             }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <nav>
-        <div class="logo">pok"<span style="color:white">amiami</span>.</div>
-    </nav>
-
-    <section class="hero">
-        <div class="container">
-            
-            <div class="content-text">
-                <h1>Nikmati Rasa <br> <span>Autentik & Lezat</span></h1>
-                <p>
-                    Menu spesial hari ini siap memanjakan lidah Anda. 
-                    Bahan segar, bumbu pilihan, dan dimasak dengan penuh cinta.
-                </p>
-                
-                <div class="btn-group">
-                    <a href="https://goo.gl/maps/hAHHHBsEWwEzm81s9" target="_blank" class="btn btn-loc">
-                        <i class="fa-solid fa-location-dot"></i> Lokasi
-                    </a>
-
-                    <a href="https://wa.me/6281905430105?text=Halo%20saya%20mau%20pesan%20menu" target="_blank" class="btn btn-wa">
-                        <i class="fa-brands fa-whatsapp"></i> Hubungi WA
-                    </a>
-                </div>
-            </div>
-
-            <div class="content-image">
-                <div class="blob"></div>
-                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Menu Makanan Enak" class="menu-img">
-            </div>
-
+    <div class="container">
+        
+        <div class="image-section" onclick="openMenu()">
+            <div class="click-hint"><i class="fas fa-search"></i> Lihat Menu</div>
+            <img src="https://placehold.co/400x400/ff9f43/ffffff?text=Ayam+Pokpok\nKotak" alt="Ayam Pokpok" class="product-img">
         </div>
-    </section>
 
+        <div class="content-section">
+            <h1>pok”amiami</h1>
+            <div class="tagline">"nggayem oke, mangan oke"</div>
+            <p class="description">
+                Nikmati sensasi ayam pokpok kotak dengan bumbu rahasia yang bikin nagih. 
+                Cocok buat temen nugas, nonton film, atau lauk makan siangmu hari ini.
+            </p>
+
+            <div class="button-group">
+                <a href="https://maps.google.com" target="_blank" class="btn btn-loc">
+                    <i class="fas fa-map-marker-alt"></i> Lokasi Outlet
+                </a>
+                <a href="https://wa.me/6281234567890?text=Halo%20pok”amiami,%20saya%20mau%20pesan..." target="_blank" class="btn btn-wa">
+                    <i class="fab fa-whatsapp"></i> Pesan Sekarang
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="menuModal" class="modal" onclick="closeMenu(event)">
+        <span class="close-btn" onclick="closeMenu(event)">×</span>
+        
+        <img src="https://placehold.co/420x594/ffffff/333333?text=GAMBAR+MENU\nA4+PORTRAIT" alt="Menu A4" class="modal-content">
+    </div>
+
+    <script>
+        // JavaScript untuk fitur Klik Gambar
+        const modal = document.getElementById("menuModal");
+
+        function openMenu() {
+            modal.classList.add("show");
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeMenu(event) {
+            if (event.target === modal || event.target.classList.contains('close-btn')) {
+                modal.classList.remove("show");
+                document.body.style.overflow = "auto";
+            }
+        }
+    </script>
 </body>
 </html>
