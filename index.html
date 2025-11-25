@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Spesial Kami</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- RESET & VARIABEL --- */
+        :root {
+            --primary-color: #ff9f1c; /* Warna Oranye Jeruk */
+            --secondary-color: #2ec4b6; /* Warna Tosca */
+            --bg-dark: #1b1b1b;
+            --text-light: #ffffff;
+            --text-gray: #cccccc;
+            --wa-green: #25D366;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden; /* Mencegah scroll samping karena gambar miring */
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 50px;
+            position: relative;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            flex-wrap: wrap; /* Agar responsif di HP */
+        }
+
+        /* --- TEXT CONTENT (Kiri) --- */
+        .content-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 20px;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        h1 span {
+            color: var(--primary-color);
+        }
+
+        p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        /* --- BUTTONS --- */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Tombol Lokasi (Outline) */
+        .btn-loc {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            background: transparent;
+        }
+
+        .btn-loc:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Tombol WhatsApp (Solid) */
+        .btn-wa {
+            background-color: var(--wa-green);
+            color: white;
+            border: 2px solid var(--wa-green);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-wa:hover {
+            background-color: #1ebc57;
+            transform: translateY(-3px);
+        }
+
+        /* --- IMAGE AREA (Kanan) --- */
+        .content-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            min-width: 300px;
+        }
+
+        /* BACKGROUND BLOB (Hiasan di belakang gambar) */
+        .blob {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(45deg, var(--primary-color), #ff5e62);
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.2;
+            z-index: 1;
+        }
+
+        /* GAMBAR MIRING 25 DERAJAT */
+        .menu-img {
+            width: 350px;
+            height: auto;
+            /* INI BAGIAN PENTINGNYA: ROTASI 25 DERAJAT */
+            transform: rotate(25deg); 
+            
+            border-radius: 30px;
+            box-shadow: 20px 20px 30px rgba(0,0,0,0.5);
+            z-index: 2;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 5px solid rgba(255,255,255,0.1);
+        }
+
+        /* Efek Hover: Gambar menjadi lurus saat mouse diarahkan */
+        .menu-img:hover {
+            transform: rotate(0deg) scale(1.05);
+            cursor: pointer;
+        }
+
+        /* --- RESPONSIVE (Tampilan HP) --- */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 100px 20px 50px;
+                text-align: center;
+            }
+            
+            .container {
+                flex-direction: column-reverse; /* Gambar di atas, teks di bawah */
+                gap: 50px;
+            }
+
+            .content-text {
+                padding-right: 0;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            p {
+                margin: 0 auto 30px;
+            }
+
+            .btn-group {
+                justify-content: center;
+            }
+
+            .menu-img {
+                width: 280px; /* Perkecil gambar di HP */
+                transform: rotate(15deg); /* Kurangi kemiringan di HP agar rapi */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Foodie<span style="color:white">Station</span>.</div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            
+            <div class="content-text">
+                <h1>Nikmati Rasa <br> <span>Autentik & Lezat</span></h1>
+                <p>
+                    Menu spesial hari ini siap memanjakan lidah Anda. 
+                    Bahan segar, bumbu pilihan, dan dimasak dengan penuh cinta.
+                </p>
+                
+                <div class="btn-group">
+                    <a href="https://goo.gl/maps/contohLokasi" target="_blank" class="btn btn-loc">
+                        <i class="fa-solid fa-location-dot"></i> Lokasi
+                    </a>
+
+                    <a href="https://wa.me/628123456789?text=Halo%20saya%20mau%20pesan%20menu" target="_blank" class="btn btn-wa">
+                        <i class="fa-brands fa-whatsapp"></i> Hubungi WA
+                    </a>
+                </div>
+            </div>
+
+            <div class="content-image">
+                <div class="blob"></div>
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Menu Makanan Enak" class="menu-img">
+            </div>
+
+        </div>
+    </section>
+
+</body>
+</html>
